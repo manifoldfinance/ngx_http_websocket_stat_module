@@ -1,0 +1,19 @@
+name: ci-pipeline
+
+on: pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+        uses: actions/checkout@v2
+      - name: Set up python 
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+
+      - name: Install, Buiild and Test
+        run: |
+          pip3 install plumbum websocket-client websocket-client tornado
+          python3 test/build_helper.py build
+          python3 test/unit_test.py
