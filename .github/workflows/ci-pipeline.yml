@@ -15,6 +15,8 @@ jobs:
 
       - name: Install, Buiild and Test
         run: |
+          sudo apt-get update
+          sudo apt-get install -y -qq java-common build-essential software-properties-common libxml2-dev libxslt-dev lib32z1-dev python-lxml
           pip3 install plumbum websocket-client websocket-client tornado
           python3 test/build_helper.py build
           python3 test/unit_test.py
